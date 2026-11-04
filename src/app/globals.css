@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-midnight: #101a24;
+  --color-charcoal: #17232d;
+  --color-ivory: #f7f4ec;
+  --color-emerald: #2f765a;
+  --color-sage: #c8d7c5;
+  --color-lime: #d7f36b;
+  --color-gold: #c9a96e;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #128c4a;
+
+  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+  --animate-twinkle: twinkle 3s ease-in-out infinite;
+  --animate-zzz: zzz 3.2s ease-in infinite;
+  --animate-sun-spin: spin 60s linear infinite;
+  --animate-cloud: cloud 40s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.4s ease-out infinite;
+  --animate-breathe: breathe 4s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50% { transform: translateY(-14px) rotate(calc(var(--r, 0deg) + 2deg)); }
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.25; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+  @keyframes zzz {
+    0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+    25% { opacity: 1; }
+    100% { opacity: 0; transform: translate(14px, -26px) scale(1.2); }
+  }
+  @keyframes cloud {
+    from { transform: translateX(-20%); }
+    to { transform: translateX(120%); }
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.04); }
+  }
+}
+
+:root {
+  color-scheme: light;
+  --background: #f7f4ec;
+  --foreground: #101a24;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+::selection {
+  background: var(--color-lime);
+  color: var(--color-midnight);
+}
+
+/* Visible focus states for keyboard users */
+:focus-visible {
+  outline: 3px solid var(--color-lime);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.on-light :focus-visible {
+  outline-color: var(--color-emerald);
+}
+
+/* Chessboard-pattern backgrounds */
+.bg-checker {
+  background-image:
+    linear-gradient(45deg, currentColor 25%, transparent 25%, transparent 75%, currentColor 75%),
+    linear-gradient(45deg, currentColor 25%, transparent 25%, transparent 75%, currentColor 75%);
+  background-size: 64px 64px;
+  background-position: 0 0, 32px 32px;
+}
+
+.bg-grid-lines {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.glass {
+  background: rgb(255 255 255 / 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgb(255 255 255 / 0.14);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Flip clock card */
+.flip-card {
+  position: relative;
+  perspective: 600px;
+}
+.flip-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: rgb(0 0 0 / 0.45);
+  z-index: 3;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
